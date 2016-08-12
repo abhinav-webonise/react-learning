@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://fb.me/react-15.2.1.js"></script>
+    <script src="https://fb.me/react-dom-15.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      var HelloWorld = React.createClass({
+        render: function() {
+          return (
+            <p>
+              Hello, <input type="text" placeholder="Your name here" />!
+              It is {this.props.date.toTimeString()}
+            </p>
+          );
+        }
+      });
+
+      setInterval(function() {
+        ReactDOM.render(
+          <HelloWorld date={new Date()} />,
+          document.getElementById('example')
+        );
+      }, 500);
+    </script>
+  </body>
+</html>
+
+<!--
+
+Here What I am doing is just upadting time without refreshing the page and even the content which is in TextBox won't change. Remember here that we can access the props using this.props.propertyName in the components.
+React DOM will render the content of the Component and also remember that there is difference in HTML tags and React Tags. (React Tags starts with a capital Letter and there after follows camelCase Notation)
+
+-->
