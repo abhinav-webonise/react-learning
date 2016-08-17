@@ -38,44 +38,35 @@
               &nbsp;
               <Link to="Print">Print
               </Link>
-                {this.props.children}
+              {this.props.children}
             </div>
-
           );
-
         }
-
-
       }
 
       class Mobile extends React.Component {
-
          constructor(props) {
             super(props);
-
             this.state = {
-               data: 'Enter Mobile Number',
+               image: 'Image path goes here',
             }
-
-
             this.updateState = this.updateState.bind(this);
-
-
          };
-
          updateState(e) {
             this.setState({data: e.target.value});
          }
          render() {
           return (
             <div>
-              <h1> Mobile </h1>
+              <hr/>
+              <h1>
+                Mobile
+              </h1>
               <input onChange = {this.updateState} value={this.state.data} />
-                  <Link to="Image">
-                    Next
-                  </Link>
+                <Link to="Image">
+                  Next
+                </Link>
               <h4> {this.state.data} </h4>
-
             </div>
           );
         }
@@ -85,11 +76,16 @@
         render() {
           return (
             <div>
-              <h1> Image </h1>
-              <p> Here Camera Controller will go </p>
+              <hr/>
+              <h1>
+                Image
+              </h1>
+              <p>
+                Here Camera Controller will go
+              </p>
               <Link to="VisitorDetails">
-                    Next
-                  </Link>
+                Next
+              </Link>
             </div>
           );
         }
@@ -98,67 +94,112 @@
       class VisitorDetails extends React.Component {
         constructor(props) {
             super(props);
-
             this.state = {
                fullname: 'Enter Full Name',
                car: 'Enter Car Number',
                companyname: 'Enter Company Name'
             }
-
-
             this.updateState1 = this.updateState1.bind(this);
             this.updateState2 = this.updateState2.bind(this);
             this.updateState3 = this.updateState3.bind(this);
-
-
          };
-
          updateState1(e) {
             this.setState({fullname: e.target.value});
          }
-
          updateState2(e) {
             this.setState({car: e.target.value});
          }
-
          updateState3(e) {
             this.setState({companyname: e.target.value});
          }
-
         render() {
           return (
             <div>
+              <hr/>
+              <Link to="Image">
+                Back
+              </Link>
               <h1> Visitor Details </h1>
-              <div>
-              </div>
-
               <div>
                 Full Name: <input onChange = {this.updateState1} value={this.state.fullname} />&nbsp;
                 Car No.: <input onChange = {this.updateState2} value={this.state.car} />&nbsp;
                 Company No.: <input onChange = {this.updateState3} value={this.state.companyname} />&nbsp;
               </div>
-              <p> {this.state.fullname} &nbsp;
-                  {this.state.car} &nbsp;
-                  {this.state.companyname} &nbsp;
+              <p>
+                {this.state.fullname} &nbsp;
+                {this.state.car} &nbsp;
+                {this.state.companyname} &nbsp;
               </p>
               <Link to="GeneralDetails">
-                    Next
-                  </Link>
+                Next
+              </Link>
             </div>
           );
         }
       }
 
-
       class GeneralDetails extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+               visitorType: 'Visitor Type',
+               comingFrom: 'Coming From',
+               purpose: 'Purpose',
+               reason: 'Reason',
+               whomToMeet: 'Whom to meet',
+               location: 'Enter Location',
+            }
+            this.updateState1 = this.updateState1.bind(this);
+            this.updateState2 = this.updateState2.bind(this);
+            this.updateState3 = this.updateState3.bind(this);
+            this.updateState4 = this.updateState3.bind(this);
+            this.updateState5 = this.updateState3.bind(this);
+            this.updateState6 = this.updateState3.bind(this);
+         };
+         updateState1(e) {
+            this.setState({visitorType: e.target.value});
+         }
+         updateState2(e) {
+            this.setState({comingFrom: e.target.value});
+         }
+         updateState3(e) {
+            this.setState({purpose: e.target.value});
+         }
+         updateState4(e) {
+            this.setState({reason: e.target.value});
+         }
+         updateState5(e) {
+            this.setState({whomToMeet: e.target.value});
+         }
+         updateState6(e) {
+            this.setState({location: e.target.value});
+         }
         render() {
           return (
             <div>
+              <hr/>
+              <Link to="VisitorDetails">
+                Back
+              </Link>
               <h1> General Details </h1>
               <p> Here General Details will go </p>
+              VisitorType:<input onChange = {this.updateState1} value={this.state.visitorType} />&nbsp;
+              ComingFrom:<input onChange = {this.updateState2} value={this.state.comingFrom} />&nbsp;
+              Purpose:<input onChange = {this.updateState3} value={this.state.purpose} />&nbsp;
+              Reason:<input onChange = {this.updateState4} value={this.state.reason} />&nbsp;
+              WhomToMeet:<input onChange = {this.updateState5} value={this.state.whomToMeet} />&nbsp;
+              Location:<input onChange = {this.updateState6} value={this.state.location} />&nbsp;
+              <p>
+                {this.state.visitorType} &nbsp;
+                {this.state.comingFrom} &nbsp;
+                {this.state.purpose} &nbsp;
+                {this.state.reason} &nbsp;
+                {this.state.whomToMeet} &nbsp;
+                {this.state.location} &nbsp;
+              </p>
               <Link to="Print">
-                    Next
-                  </Link>
+                Print
+              </Link>
             </div>
           );
         }
@@ -168,15 +209,17 @@
         render() {
           return (
             <div>
+              <hr/>
               <h1> Print Details </h1>
               <p> Here Print Details will go </p>
               <Link to="Mobile">
-                    Ok
-                  </Link>
+                Ok
+              </Link>
             </div>
           );
         }
       }
+
       ReactDOM.render((
           <Router history = {history}>
             <Route path="/" component = {App} >
