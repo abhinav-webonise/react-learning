@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://fb.me/react-15.2.1.js"></script>
+    <script src="https://fb.me/react-dom-15.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router/2.6.1/ReactRouter.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/history/2.1.1/History.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      var Router = window.ReactRouter.Router;
+      var Route = window.ReactRouter.Route;
+      var IndexRoute = window.ReactRouter.IndexRoute;
+      var Link = window.ReactRouter.Link;
+      var useRouterHistory = window.ReactRouter.useRouterHistory;
+      var createHashHistory = window.History.createHashHistory;
+      var history = useRouterHistory(createHashHistory)({ queryKey: false });
+
+      class App extends React.Component {
+        render() {
+          return(
+            <div>
+              <Link to="Mobile">Mobile
+              </Link>
+              &nbsp;
+              <Link to="image">Image
+              </Link>
+              &nbsp;
+              <Link to="VisitorDetails">Visitor Details
+              </Link>
+              &nbsp;
+              <Link to="GeneralDetails">General Details
+              </Link>
+              &nbsp;
+              <Link to="Print">Print
+              </Link>
+                {this.props.children}
+            </div>
+
+          );
+
+        }
+
+
+      }
+
+      class Mobile extends React.Component {
+
+         constructor(props) {
+            super(props);
+
+            this.state = {
+               data: 'Enter Mobile Number',
+            }
+
+
+            this.updateState = this.updateState.bind(this);
+
+
+         };
+
+         updateState(e) {
+            this.setState({data: e.target.value});
+         }
+         render() {
+          return (
+            <div>
+              <h1> Mobile </h1>
+              <input onChange = {this.updateState} value={this.state.data} />
+                  <Link to="Image">
+                    Next
+                  </Link>
+              <h4> {this.state.data} </h4>
+
+            </div>
+          );
+        }
+      }
+
+      class Image extends React.Component {
+        render() {
+          return (
+            <div>
+              <h1> Image </h1>
+              <p> Here Camera Controller will go </p>
+              <Link to="VisitorDetails">
+                    Next
+                  </Link>
+            </div>
+          );
+        }
+      }
+
+      class VisitorDetails extends React.Component {
+        constructor(props) {
+            super(props);
+
+            this.state = {
+               fullname: 'Enter Full Name',
+               car: 'Enter Car Number',
+               companyname: 'Enter Company Name'
+            }
+
+
+            this.updateState1 = this.updateState1.bind(this);
+            this.updateState2 = this.updateState2.bind(this);
+            this.updateState3 = this.updateState3.bind(this);
+
+
+         };
+
+         updateState1(e) {
+            this.setState({fullname: e.target.value});
+         }
+
+         updateState2(e) {
+            this.setState({car: e.target.value});
+         }
+
+         updateState3(e) {
+            this.setState({companyname: e.target.value});
+         }
+
+        render() {
+          return (
+            <div>
+              <h1> Visitor Details </h1>
+              <div>
+              </div>
+
+              <div>
+                Full Name: <input onChange = {this.updateState1} value={this.state.fullname} />&nbsp;
+                Car No.: <input onChange = {this.updateState2} value={this.state.car} />&nbsp;
+                Company No.: <input onChange = {this.updateState3} value={this.state.companyname} />&nbsp;
+              </div>
+              <p> {this.state.fullname} &nbsp;
+                  {this.state.car} &nbsp;
+                  {this.state.companyname} &nbsp;
+              </p>
+              <Link to="GeneralDetails">
+                    Next
+                  </Link>
+            </div>
+          );
+        }
+      }
+
+
+      class GeneralDetails extends React.Component {
+        render() {
+          return (
+            <div>
+              <h1> General Details </h1>
+              <p> Here General Details will go </p>
+              <Link to="Print">
+                    Next
+                  </Link>
+            </div>
+          );
+        }
+      }
+
+      class Print extends React.Component {
+        render() {
+          return (
+            <div>
+              <h1> Print Details </h1>
+              <p> Here Print Details will go </p>
+              <Link to="Mobile">
+                    Ok
+                  </Link>
+            </div>
+          );
+        }
+      }
+      ReactDOM.render((
+          <Router history = {history}>
+            <Route path="/" component = {App} >
+              <IndexRoute component = {Mobile} />
+              <Route path = "Mobile" component = {Mobile} />
+              <Route path = "Image" component = {Image} />
+              <Route path = "VisitorDetails" component = {VisitorDetails} />
+              <Route path = "GeneralDetails" component = {GeneralDetails} />
+              <Route path = "Print" component = {Print} />
+            </Route>
+          </Router> ), document.getElementById('example'));
+    </script>
+  </body>
+</html>
